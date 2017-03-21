@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java多线程," />
 
 
 
@@ -87,12 +87,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gary-生活录">
-<meta property="og:url" content="http://lzhenxing.com/index.html">
+<meta name="description" content="生产者和消费者模式是一种并发设计模式，生产者消费者模式解决的是两者速率不一致而产生的阻抗不匹配，该模式通过平衡生产线程和消费线程的工作能力来提高程序的整体处理数据的速度。
+生产者消费者模式生产者消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消费者彼此之间不直接通讯，而通过阻塞队列来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java多线程——生产者和消费者模式">
+<meta property="og:url" content="http://lzhenxing.com/2017/03/15/Java多线程——生产者和消费者模式/index.html">
 <meta property="og:site_name" content="Gary-生活录">
+<meta property="og:description" content="生产者和消费者模式是一种并发设计模式，生产者消费者模式解决的是两者速率不一致而产生的阻抗不匹配，该模式通过平衡生产线程和消费线程的工作能力来提高程序的整体处理数据的速度。
+生产者消费者模式生产者消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消费者彼此之间不直接通讯，而通过阻塞队列来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而">
+<meta property="og:updated_time" content="2017-03-21T17:03:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gary-生活录">
+<meta name="twitter:title" content="Java多线程——生产者和消费者模式">
+<meta name="twitter:description" content="生产者和消费者模式是一种并发设计模式，生产者消费者模式解决的是两者速率不一致而产生的阻抗不匹配，该模式通过平衡生产线程和消费线程的工作能力来提高程序的整体处理数据的速度。
+生产者消费者模式生产者消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消费者彼此之间不直接通讯，而通过阻塞队列来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而">
 
 
 
@@ -120,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://lzhenxing.com/"/>
+  <link rel="canonical" href="http://lzhenxing.com/2017/03/15/Java多线程——生产者和消费者模式/"/>
 
 
 
 
 
-  <title> Gary-生活录 </title>
+  <title> Java多线程——生产者和消费者模式 | Gary-生活录 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -160,9 +167,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -299,9 +304,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -331,10 +336,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/03/15/Java多线程——生产者和消费者模式/" itemprop="url">
-                  Java多线程——生产者和消费者模式
-                </a>
+                Java多线程——生产者和消费者模式
               
             
           </h1>
@@ -417,9 +419,7 @@
       
 
       
-        
-          
-            <p>生产者和消费者模式是一种并发设计模式，生产者消费者模式解决的是两者速率不一致而产生的阻抗不匹配，该模式通过平衡生产线程和消费线程的工作能力来提高程序的整体处理数据的速度。</p>
+        <p>生产者和消费者模式是一种并发设计模式，生产者消费者模式解决的是两者速率不一致而产生的阻抗不匹配，该模式通过平衡生产线程和消费线程的工作能力来提高程序的整体处理数据的速度。</p>
 <h1 id="生产者消费者模式"><a href="#生产者消费者模式" class="headerlink" title="生产者消费者模式"></a>生产者消费者模式</h1><p>生产者消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消费者彼此之间不直接通讯，而通过阻塞队列来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而是直接从阻塞队列里取，阻塞队列就相当于一个缓冲区，平衡了生产者和消费者的处理能力。</p>
 <h1 id="为什么要使用生产者和消费者模式"><a href="#为什么要使用生产者和消费者模式" class="headerlink" title="为什么要使用生产者和消费者模式"></a>为什么要使用生产者和消费者模式</h1><p>在多线程开发当中，如果生产者处理速度很快，而消费者处理速度很慢，那么生产者就必须等待消费者处理完，才能继续生产数据。同样的道理，如果消费者的处理能力大于生产者，那么消费者就必须等待生产者。为了解决这个问题于是引入了生产者和消费者模式。</p>
 <h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul>
@@ -446,344 +446,66 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">Producer: <span class="number">0</span></div><div class="line">Producer: <span class="number">1</span></div><div class="line">Producer: <span class="number">2</span></div><div class="line">Producer: <span class="number">3</span></div><div class="line">Producer: <span class="number">4</span></div><div class="line">Queue is full, Producer  is waiting , size: <span class="number">5</span></div><div class="line">Consumer: <span class="number">0</span></div><div class="line">Producer: <span class="number">5</span></div><div class="line">Queue is full, Producer  is waiting , size: <span class="number">5</span></div><div class="line">Consumer: <span class="number">1</span></div><div class="line">Producer: <span class="number">6</span></div><div class="line">Queue is full, Producer  is waiting , size: <span class="number">5</span></div><div class="line">Consumer: <span class="number">2</span></div><div class="line">Producer: <span class="number">7</span></div><div class="line">Queue is full, Producer  is waiting , size: <span class="number">5</span></div><div class="line">Consumer: <span class="number">3</span></div><div class="line">Producer: <span class="number">8</span></div><div class="line">Queue is full, Producer  is waiting , size: <span class="number">5</span></div><div class="line">Consumer: <span class="number">4</span></div><div class="line">Producer: <span class="number">9</span></div><div class="line">Consumer: <span class="number">5</span></div><div class="line">Consumer: <span class="number">6</span></div><div class="line">Consumer: <span class="number">7</span></div><div class="line">Consumer: <span class="number">8</span></div><div class="line">Consumer: <span class="number">9</span></div><div class="line">Queue is empty, Consumer is waiting , size: <span class="number">0</span></div></pre></td></tr></table></figure>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.infoq.com/cn/articles/producers-and-consumers-mode" target="_blank">聊聊并发——生产者消费者模式</a><br><a href="http://www.java67.com/2012/12/producer-consumer-problem-with-wait-and-notify-example.html#ixzz4bbane200" target="_blank">Producer Consumer Problem with Wait and Notify Example</a></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lzhenxing.com/2017/03/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary.liu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://img.gx8899.com/uploads/allimg/160804/3-160P4111639.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary-生活录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/13/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-13T15:07:13+08:00">
-                2017-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Java多线程/" rel="tag"># Java多线程</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/13/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/13/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lzhenxing.com/2017/02/11/线程间协作——wait、notify、notifyAll/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary.liu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://img.gx8899.com/uploads/allimg/160804/3-160P4111639.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary-生活录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/13/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/02/11/线程间协作——wait、notify、notifyAll/" itemprop="url">
-                  线程间协作——wait、notify、notifyAll
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-11T09:22:54+08:00">
-                2017-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/11/线程间协作——wait、notify、notifyAll/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/11/线程间协作——wait、notify、notifyAll/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>在 Java 中，可以通过配合调用 Object 对象的 wait() 方法和 notify()方法或 notifyAll() 方法来实现线程间的通信。在线程中调用 wait() 方法，将阻塞等待其他线程的通知（其他线程调用 notify() 方法或 notifyAll() 方法），在线程中调用 notify() 方法或 notifyAll() 方法，将通知其他线程从 wait() 方法处返回。</p>
-<h1 id="wait"><a href="#wait" class="headerlink" title="wait()"></a>wait()</h1><p>该方法用来将当前线程置入休眠状态，直到接到通知或被中断为止。在调用 wait()之前，线程必须要获得该对象的对象级别锁，即只能在同步方法或同步块中调用 wait()方法。进入 wait()方法后，当前线程释放锁。</p>
-<h1 id="notify"><a href="#notify" class="headerlink" title="notify()"></a>notify()</h1><p>该方法也要在同步方法或同步块中调用，即在调用前，线程也必须要获得该对象的对象级别锁。<br>该方法用来通知那些可能等待该对象的对象锁的其他线程。如果有多个线程等待，则线程规划器任意挑选出其中一个 wait()状态的线程来发出通知，并使它等待获取该对象的对象锁（notify 后，当前线程不会马上释放该对象锁，wait 所在的线程并不能马上获取该对象锁，要等到程序退出 synchronized 代码块后，当前线程才会释放锁，wait所在的线程也才可以获取该对象锁），但不惊动其他同样在等待被该对象notify的线程们</p>
-<h1 id="notifyAll"><a href="#notifyAll" class="headerlink" title="notifyAll()"></a>notifyAll()</h1><p>该方法与 notify ()方法的工作方式相同，重要的一点差异是：<br>notifyAll 使所有原来在该对象上 wait 的线程统统退出 wait 的状态（即全部被唤醒，不再等待 notify 或 notifyAll，但由于此时还没有获取到该对象锁，因此还不能继续往下执行），变成等待获取该对象上的锁，一旦该对象锁被释放（notifyAll 线程退出调用了 notifyAll 的 synchronized 代码块的时候），他们就会去竞争。如果其中一个线程获得了该对象锁，它就会继续往下执行，在它退出 synchronized 代码块，释放锁后，其他的已经被唤醒的线程将会继续竞争获取该锁，一直进行下去，直到所有被唤醒的线程都执行完毕。</p>
-<p>应该在while循环，而不是if语句中调用wait。if语句存在一些微妙的小问题，导致即使条件没被满足，你的线程你也有可能被错误地唤醒。所以如果你不在线程被唤醒后再次使用while循环检查唤醒条件是否被满足，你的程序就有可能会出错。在while循环里使用wait的目的，是在线程被唤醒的前后都持续检查条件是否被满足。如果条件并未改变，wait被调用之前notify的唤醒通知就来了，那么这个线程并不能保证被唤醒，有可能会导致死锁问题。参考《Effective Java》</p>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>我之前写过一篇文章 <a href="http://blog.csdn.net/revitalizing/article/details/61008956" target="_blank">线程执行顺序——CountDownLatch、join()、线程池</a> 讨论的是让一个线程晚于其他线程最后执行。我想用wait和notify写个例子让一个线程先于其他线程运行。</p>
-<p>代码场景：Worker类和Boss类都实现Runnable接口，但是老板先安排完工作后，工人才能开始工作。</p>
-<p>代码实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WaitAndNotify</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line"></div><div class="line">        Object object = <span class="keyword">new</span> Object();</div><div class="line"></div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Worker(<span class="string">"work1"</span>, object)).start();</div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Worker(<span class="string">"work2"</span>, object)).start();</div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Worker(<span class="string">"work3"</span>, object)).start();</div><div class="line"></div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Boss(<span class="string">"boss"</span>, object)).start();</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> Object object;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Worker</span><span class="params">(String name,Object object)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.object = object;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">synchronized</span>(object)&#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                object.wait();</div><div class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            System.out.println(name + <span class="string">" is working"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Boss</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> Object object;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Boss</span><span class="params">(String name, Object object)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.object = object;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">synchronized</span>(object)&#123;</div><div class="line">            System.out.println(name + <span class="string">" has arranged the work"</span>);</div><div class="line">            object.notifyAll();</div><div class="line">            <span class="comment">//object.notify();</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">boss has arranged the work</div><div class="line">work3 is working</div><div class="line">work2 is working</div><div class="line">work1 is working</div></pre></td></tr></table></figure>
-<p>从上面的代码中可以看到，Boss类使用notifyAll（）方法，3个worker线程都会执行，如果换成 notify（）方法，则只有一个worker线程会执行。</p>
-<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><p>比如可以用wait和notify实现生产者和消费者，这里不细说了，有空再写下生产者和消费者吧。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
-<li>可以使用wait和notify函数来实现线程间通信。</li>
-<li>在synchronized的函数或对象里使用wait、notify和notifyAll，否则Java虚拟机会生成 IllegalMonitorStateException。</li>
-<li>在while循环里而不是if语句下使用wait。这样，循环会在线程睡眠前后都检查wait的条件，并在条件实际上并未改变的情况下处理唤醒通知。</li>
-<li>在多线程间共享的对象（在生产者消费者模型里即缓冲区队列）上使用wait。</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://wiki.jikexueyuan.com/project/java-concurrency/collaboration-between-threads.html" target="_blank">线程间协作：wait、notify、notifyAll</a><br><a href="http://www.importnew.com/16453.html" target="_blank">如何在 Java 中正确使用 wait, notify 和 notifyAll – 以生产者消费者模型为例</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -791,6 +513,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/15/Java多线程——生产者和消费者模式/"
+           data-title="Java多线程——生产者和消费者模式" data-url="http://lzhenxing.com/2017/03/15/Java多线程——生产者和消费者模式/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -810,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://img.gx8899.com/uploads/allimg/160804/3-160P4111639.jpg"
@@ -902,6 +641,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生产者消费者模式"><span class="nav-number">1.</span> <span class="nav-text">生产者消费者模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用生产者和消费者模式"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用生产者和消费者模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优点"><span class="nav-number">3.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例代码"><span class="nav-number">5.</span> <span class="nav-text">示例代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用阻塞队列实现"><span class="nav-number">5.1.</span> <span class="nav-text">用阻塞队列实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用wait-notify-实现"><span class="nav-number">5.2.</span> <span class="nav-text">用wait(), notify() 实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1007,6 +762,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
