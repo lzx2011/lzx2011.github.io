@@ -621,6 +621,346 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lzhenxing.com/2017/03/11/悲观锁和乐观锁/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary.liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.gx8899.com/uploads/allimg/160804/3-160P4111639.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary-生活录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/悲观锁和乐观锁/" itemprop="url">
+                  悲观锁和乐观锁
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T09:22:54+08:00">
+                2017-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/11/悲观锁和乐观锁/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/11/悲观锁和乐观锁/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h1><h1 id="为什么需要锁"><a href="#为什么需要锁" class="headerlink" title="为什么需要锁"></a>为什么需要锁</h1><p>在多用户环境中，在同一时间可能会有多个用户更新相同的记录，就会产生冲突。冲突最终会导致丢失更新或脏读。</p>
+<p>丢失更新：一个事务的更新覆盖了其它事务的更新结果。<br>脏读：当一个事务读取其它完成一半事务的记录时，就会发生脏读取。表现为不同用户读到的同一个记录的值可能不同。</p>
+<p>悲观锁还是乐观锁可以认为是一种思想。不仅仅是关系型数据库系统中有乐观锁和悲观锁的概念，像 memcache、hibernate、tair 等都有类似的概念。不要把他们和数据中提供的锁机制（行锁、表锁、排他锁、共享锁）混为一谈。其实，在DBMS中，悲观锁正是利用数据库本身提供的锁机制来实现的。</p>
+<p>当一个用户锁住数据库中的某个对象时，其他用户就不能再访问该对象。加锁对并发访问的影响体现在锁的粒度上。比如，放在一个表上的锁限制对整个表的并发访问；放在数据页上的锁限制了对整个数据页的访问；放在行上的锁只限制对该行的并发访问。可见行锁粒度最小，并发访问最好，页锁粒度最大，表锁介于两者之间。</p>
+<h1 id="悲观锁-Pessimistic-Lock"><a href="#悲观锁-Pessimistic-Lock" class="headerlink" title="悲观锁(Pessimistic Lock)"></a>悲观锁(Pessimistic Lock)</h1><p>假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。<br>每次拿数据的时候都会担心会被别人修改（疑心重很悲观），所以每次在拿数据的时候都会上锁。确保自己使用的过程中不会被别人访问，自己使用完后再解锁，期间需要访问该数据的都会等待。</p>
+<p>在数据库中，悲观锁的流程如下：<br>在对任意记录进行修改前，先尝试为该记录加上排他锁（exclusive locking）。<br>如果加锁失败，说明该记录正在被修改，那么当前查询可能要等待或者抛出异常。 具体响应方式由开发者根据实际需要决定。<br>如果成功加锁，那么就可以对记录做修改，事务完成后就会解锁了。<br>其间如果有其他对该记录做修改或加排他锁的操作，都会等待我们解锁或直接抛出异常。</p>
+<p>MySQL InnoDB中使用悲观锁：<br>要使用悲观锁，我们必须关闭mysql数据库的自动提交属性，因为MySQL默认使用autocommit模式，也就是说，当你执行一个更新操作后，MySQL会立刻将结果进行提交。set autocommit=0;</p>
+<p>MySQL InnoDB默认行级锁。行级锁都是基于索引的，如果一条SQL语句用不到索引是不会使用行级锁的，会使用表级锁把整张表锁住，这点需要注意。</p>
+<p>悲观并发控制实际上是“先取锁再访问”的保守策略，为数据处理的安全提供了保证。</p>
+<p>悲观锁机制存在以下问题：</p>
+<p>在多线程竞争下，加锁、释放锁会导致比较多的上下文切换和调度延时，引起性能问题。<br>一个线程持有锁会导致其它所有需要此锁的线程挂起。<br>如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能风险。</p>
+<h1 id="乐观锁-Optimistic-Lock"><a href="#乐观锁-Optimistic-Lock" class="headerlink" title="乐观锁(Optimistic Lock)"></a>乐观锁(Optimistic Lock)</h1><p>所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。<br>假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。[1] 乐观锁不能解决脏读的问题。<br>每次拿数据的时候都完全不担心会被别人修改（心态好很乐观），所以每次在拿数据的时候都不会上锁。但是在更新数据的时候去判断该期间是否被别人修改过（使用版本号等机制），期间该数据可以随便被其他人读取。<br>相对于悲观锁，在对数据库进行处理的时候，乐观锁并不会使用数据库提供的锁机制。一般的实现乐观锁的方式就是记录数据版本或使用时间戳。</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><ol>
+<li>使用自增长的整数表示数据版本号。更新时检查版本号是否一致，比如数据库中数据版本为6，更新提交时version=6+1,使用该version值(=7)与数据库version+1(=7)作比较，如果相等，则可以更新，如果不等则有可能其他程序已更新该记录，所以返回错误。</li>
+<li>使用时间戳来实现.</li>
+</ol>
+<blockquote>
+<p>对于以上两种方式,Hibernate自带实现方式：在使用乐观锁的字段前加annotation: @Version, Hibernate在更新时自动校验该字段。</p>
+</blockquote>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>两种锁各有优缺点，不能单纯的定义哪个好于哪个。<br>乐观锁比较适合数据修改比较少，并发量比较大，读取比较频繁的场景。<br>但是如果经常发生冲突（写数据比较多的情况下），并发量不大且不允许脏读，上层应用不不断的retry，这样反而降低了性能，对于这种情况使用悲观锁就更合适。</p>
+<h2 id="java中的使用"><a href="#java中的使用" class="headerlink" title="java中的使用"></a>java中的使用</h2><p>乐观锁是一种思想。CAS是这种思想的一种实现方式。<br>乐观锁（ Optimistic Locking）其实是一种思想。相对悲观锁而言，乐观锁假设认为数据一般情况下不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果发现冲突了，则让返回用户错误的信息，让用户决定如何去做。<br>上面提到的乐观锁的概念中其实已经阐述了他的具体实现细节：主要就是两个步骤：冲突检测和数据更新。其实现方式有一种比较典型的就是Compare and Swap(CAS)。<br>CAS是项乐观锁技术，CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”这其实和乐观锁的冲突检查+数据更新的原理是一样的。<br>在JDK1.5 中新增java.util.concurrent(J.U.C)就是建立在CAS之上的。相对于对于synchronized这种阻塞算法，CAS是非阻塞算法的一种常见实现，所以J.U.C在性能上有了很大的提升。</p>
+<blockquote>
+<p>参考：乐观锁的一种实现方式——CAS：<a href="http://www.hollischuang.com/archives/1537" target="_blank" rel="external">http://www.hollischuang.com/archives/1537</a></p>
+</blockquote>
+<p>Java中的线程安全问题至关重要，要想保证线程安全，就需要锁机制。锁机制包含两种：乐观锁与悲观锁。悲观锁是独占锁，阻塞锁。乐观锁是非独占锁，非阻塞锁。有一种乐观锁的实现方式就是CAS ，这种算法在JDK 1.5中引入的java.util.concurrent中有广泛应用。但是值得注意的是这种算法会存在ABA问题。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://yq.aliyun.com/articles/1273" target="_blank">关于悲观锁和乐观锁的区别</a></p>
+<p><a href="http://www.hollischuang.com/archives/934" target="_blank">深入理解乐观锁与悲观锁</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lzhenxing.com/2017/03/11/hexo 写blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary.liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.gx8899.com/uploads/allimg/160804/3-160P4111639.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary-生活录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/11/hexo 写blog/" itemprop="url">
+                  hexo 写blog
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T09:22:54+08:00">
+                2017-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/11/hexo 写blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/11/hexo 写blog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hexo-写blog"><a href="#hexo-写blog" class="headerlink" title="hexo 写blog"></a>hexo 写blog</h1><h1 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">new</span> [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>也可以不用这样，直接把markdown文章放到 <code>source/_post</code> 文件夹下,可以在命令中指定文章的布局（layout），默认为 post，可以通过修改 <code>_config.yml</code> 中的 <code>default_layout</code> 参数来指定默认布局。</p>
+</blockquote>
+<p>Hexo 默认以标题做为文件名称，但可编辑 new_post_name 参数来改变默认的文件名称，举例来说，设为<code>:year-:month-:day-:title.md</code> 可让您更方便的通过日期来管理文章。</p>
+<h1 id="添加标签-about-页面"><a href="#添加标签-about-页面" class="headerlink" title="添加标签 about 页面"></a>添加标签 about 页面</h1><p>以 about 标签页为例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">title: 标签</div><div class="line">date: <span class="number">2017</span>-<span class="number">2</span>-<span class="number">22</span> <span class="number">12</span>:<span class="number">39</span>:<span class="number">04</span></div><div class="line">type: <span class="string">"about"</span></div><div class="line">comments: <span class="keyword">true</span></div><div class="line">---</div></pre></td></tr></table></figure>
+<h1 id="调试和部署"><a href="#调试和部署" class="headerlink" title="调试和部署"></a>调试和部署</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo g    <span class="comment">//根据模板编译生成文件</span></div><div class="line">hexo s    <span class="comment">//本地启动服务</span></div><div class="line"></div><div class="line">hexo deploy  <span class="comment">//发布到github</span></div></pre></td></tr></table></figure>
+<p>生成文件位置：<code>.deploy_git/</code></p>
+<blockquote>
+<p>每次部署会把 <code>CNAME</code> 和 <code>README.md</code> 删掉，可以把这两个文件放到 <code>source</code> 文件夹下就可以了。</p>
+</blockquote>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p><code># 标题</code>  注意显示标题时，在 # 后面加个空格就可以了。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href=" https://hexo.io/zh-cn/docs/" target="_blank">hexo中文文档</a></p>
+<p><a href="http://www.ezlippi.com//blog/2016/02/jekyll-to-hexo.html" target="_blank">Jekyll迁移到Hexo搭建个人博客</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lzhenxing.com/2017/02/11/线程间协作——wait、notify、notifyAll/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -826,7 +1166,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -837,7 +1177,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -848,7 +1188,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
