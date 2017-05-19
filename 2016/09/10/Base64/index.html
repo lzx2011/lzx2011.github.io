@@ -87,19 +87,19 @@
 
 
 
-<meta name="description" content="Base64简介Base64编码介绍Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。
-比如三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。完整的base64定义可见RFC 1421和RFC 2045。编码后的数据比原始数据略长，为原来的4/3。所以当原有数据不是3字节的倍">
+<meta name="description" content="Base64编码介绍Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。
+比如三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。完整的base64定义可见RFC 1421和RFC 2045。编码后的数据比原始数据略长，为原来的4/3。所以当原有数据不是3字节的倍数时，会将二进制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Base64简介">
 <meta property="og:url" content="http://lzhenxing.com/2016/09/10/Base64/index.html">
 <meta property="og:site_name" content="Gary-生活录">
-<meta property="og:description" content="Base64简介Base64编码介绍Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。
-比如三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。完整的base64定义可见RFC 1421和RFC 2045。编码后的数据比原始数据略长，为原来的4/3。所以当原有数据不是3字节的倍">
-<meta property="og:updated_time" content="2017-05-19T20:09:05.000Z">
+<meta property="og:description" content="Base64编码介绍Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。
+比如三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。完整的base64定义可见RFC 1421和RFC 2045。编码后的数据比原始数据略长，为原来的4/3。所以当原有数据不是3字节的倍数时，会将二进制">
+<meta property="og:updated_time" content="2017-05-19T20:12:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Base64简介">
-<meta name="twitter:description" content="Base64简介Base64编码介绍Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。
-比如三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。完整的base64定义可见RFC 1421和RFC 2045。编码后的数据比原始数据略长，为原来的4/3。所以当原有数据不是3字节的倍">
+<meta name="twitter:description" content="Base64编码介绍Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。
+比如三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。完整的base64定义可见RFC 1421和RFC 2045。编码后的数据比原始数据略长，为原来的4/3。所以当原有数据不是3字节的倍数时，会将二进制">
 
 
 
@@ -419,7 +419,7 @@
       
 
       
-        <h1 id="Base64简介"><a href="#Base64简介" class="headerlink" title="Base64简介"></a>Base64简介</h1><h1 id="Base64编码介绍"><a href="#Base64编码介绍" class="headerlink" title="Base64编码介绍"></a>Base64编码介绍</h1><p>Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。</p>
+        <h1 id="Base64编码介绍"><a href="#Base64编码介绍" class="headerlink" title="Base64编码介绍"></a>Base64编码介绍</h1><p>Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。</p>
 <p>比如三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。完整的base64定义可见RFC 1421和RFC 2045。编码后的数据比原始数据略长，为原来的4/3。所以当原有数据不是3字节的倍数时，会将二进制数据后补0，凑够三个字节，转换为4个Base64单元，都是补位的则用个=替代一个Base64单元。当原数据长度不是3的整数倍时，如果最后剩下一个输入数据，在编码结果后加2个“=”；如果最后剩下两个输入数据，编码结果后加1个“=”；如果没有剩下任何数据，就什么都不要加，这样才可以保证数据还原的正确性。（见下面的编码过程）</p>
 <p>Base64常用于在通常处理文本数据的场合，表示、传输、存储一些二进制数据。包括MIME的email、在XML中存储复杂数据。使用的字符包括大小写字母各26个，加上10个数字，和加号“+”，斜杠“/”，一共64个字符，等号“=”用来作为后缀用途。
 　　</p>
@@ -651,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64简介"><span class="nav-number">1.</span> <span class="nav-text">Base64简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64编码介绍"><span class="nav-number">2.</span> <span class="nav-text">Base64编码介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么使用-Base64"><span class="nav-number">3.</span> <span class="nav-text">为什么使用 Base64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#base64编码过程"><span class="nav-number">4.</span> <span class="nav-text">base64编码过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#url-base64"><span class="nav-number">5.</span> <span class="nav-text">url base64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MIME-base64"><span class="nav-number">6.</span> <span class="nav-text">MIME base64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number">7.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64编码介绍"><span class="nav-number">1.</span> <span class="nav-text">Base64编码介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么使用-Base64"><span class="nav-number">2.</span> <span class="nav-text">为什么使用 Base64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#base64编码过程"><span class="nav-number">3.</span> <span class="nav-text">base64编码过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#url-base64"><span class="nav-number">4.</span> <span class="nav-text">url base64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MIME-base64"><span class="nav-number">5.</span> <span class="nav-text">MIME base64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number">6.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
