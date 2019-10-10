@@ -90,10 +90,10 @@
 <meta name="description" content="在 Java 中，可以通过配合调用 Object 对象的 wait() 方法和 notify()方法或 notifyAll() 方法来实现线程间的通信。在线程中调用 wait() 方法，将阻塞等待其他线程的通知（其他线程调用 notify() 方法或 notifyAll() 方法），在线程中调用 notify() 方法或 notifyAll() 方法，将通知其他线程从 wait() 方法处返回。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程间协作——wait、notify、notifyAll">
-<meta property="og:url" content="http://lzhenxing.com/2016/07/08/线程间协作——wait、notify、notifyAll/index.html">
+<meta property="og:url" content="http://lzx2011.github.io/2016/07/08/线程间协作——wait、notify、notifyAll/index.html">
 <meta property="og:site_name" content="Gary-生活录">
 <meta property="og:description" content="在 Java 中，可以通过配合调用 Object 对象的 wait() 方法和 notify()方法或 notifyAll() 方法来实现线程间的通信。在线程中调用 wait() 方法，将阻塞等待其他线程的通知（其他线程调用 notify() 方法或 notifyAll() 方法），在线程中调用 notify() 方法或 notifyAll() 方法，将通知其他线程从 wait() 方法处返回。">
-<meta property="og:updated_time" content="2017-05-19T17:49:29.000Z">
+<meta property="og:updated_time" content="2019-05-24T17:05:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程间协作——wait、notify、notifyAll">
 <meta name="twitter:description" content="在 Java 中，可以通过配合调用 Object 对象的 wait() 方法和 notify()方法或 notifyAll() 方法来实现线程间的通信。在线程中调用 wait() 方法，将阻塞等待其他线程的通知（其他线程调用 notify() 方法或 notifyAll() 方法），在线程中调用 notify() 方法或 notifyAll() 方法，将通知其他线程从 wait() 方法处返回。">
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://lzhenxing.com/2016/07/08/线程间协作——wait、notify、notifyAll/"/>
+  <link rel="canonical" href="http://lzx2011.github.io/2016/07/08/线程间协作——wait、notify、notifyAll/"/>
 
 
 
@@ -312,12 +312,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lzhenxing.com/2016/07/08/线程间协作——wait、notify、notifyAll/">
+    <link itemprop="mainEntityOfPage" href="http://lzx2011.github.io/2016/07/08/线程间协作——wait、notify、notifyAll/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary.liu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://img.gx8899.com/uploads/allimg/160804/3-160P4111639.jpg">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/6813795?s=460&v=4">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -511,7 +511,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/07/08/线程间协作——wait、notify、notifyAll/"
-           data-title="线程间协作——wait、notify、notifyAll" data-url="http://lzhenxing.com/2016/07/08/线程间协作——wait、notify、notifyAll/">
+           data-title="线程间协作——wait、notify、notifyAll" data-url="http://lzx2011.github.io/2016/07/08/线程间协作——wait、notify、notifyAll/">
       </div>
     
   </div>
@@ -548,7 +548,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="http://img.gx8899.com/uploads/allimg/160804/3-160P4111639.jpg"
+               src="https://avatars3.githubusercontent.com/u/6813795?s=460&v=4"
                alt="Gary.liu" />
           <p class="site-author-name" itemprop="name">Gary.liu</p>
            
@@ -560,7 +560,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -571,7 +571,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -582,7 +582,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -669,7 +669,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -776,7 +776,7 @@
   
 
   <script type="text/javascript">
-    var duoshuoQuery = {short_name:"lzhenxing"};
+    var duoshuoQuery = {short_name:"lzx2011"};
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
